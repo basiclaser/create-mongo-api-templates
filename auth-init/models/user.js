@@ -53,7 +53,9 @@ UserSchema.statics.authenticate = function (email, password, callback) {
       if (result === true) {
         return callback(null, user);
       } else {
-        return callback();
+        var err = new Error("Incorrect password.");
+        err.status = 402;
+        return callback(err);
       }
     });
   });
